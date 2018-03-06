@@ -102,9 +102,11 @@ def vels(speed, turn):
 
 if __name__ == "__main__":
     settings = termios.tcgetattr(sys.stdin)
-
+    #发布速度topic
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
+    #发布云台指向,模拟视觉输出信息
     gimbal_pub = rospy.Publisher('enemy_pos', EnemyPos, queue_size=1)
+    #射击指令
     shoot_pub = rospy.Publisher('shoot_cmd', ShootCmd, queue_size=1)
 
     rospy.init_node('teleop_control_keyboard')
@@ -123,6 +125,7 @@ if __name__ == "__main__":
     csc=0
     fwr = 0
     fws = 1500
+    #定义三种消息类
     twist = Twist()
     gimbal = EnemyPos()
     shoot = ShootCmd()
@@ -134,9 +137,9 @@ if __name__ == "__main__":
         print "yaw angle: %s\t pitch angle: %s\t" % (yaw, pitch)
         print "single shoot: %s\t continue shoot: %s\t gun on: %s\t gun speed: %s\t" %(sc, csc, fwr, fws)
         while (1):
-            key = getKey()
+            key = getKey()#获取键盘按键
             #key='i'
-            if key in moveBindings.keys():
+            if key in moveBindings.keys():#速度按键信息解析
                 x = moveBindings[key][0]
                 y = moveBindings[key][1]
                 z = moveBindings[key][2]
@@ -148,8 +151,8 @@ if __name__ == "__main__":
                 twist.angular.y = 0;
                 twist.angular.z = th * turn
                 th = moveBindings[key][3]
-                pub.publish(twist)
-            elif key in speedBindings.keys():
+                pub.publish(twist)#发布速度信息
+            elif key in speedBindings.keys():#设置底盘速度及云台步进解析
                 speed = speed * speedBindings[key][0]
                 turn = turn * speedBindings[key][1]
                 gimbalstep = gimbalstep + speedBindings[key][2]
@@ -158,7 +161,7 @@ if __name__ == "__main__":
                 if (status == 14):
                     print msg
                 status = (status + 1) % 15
-            elif key in gimbalBindings.keys():
+            elif key in gimbalBindings.keys():#云台角度指令解析
                 yaw = yaw + gimbalBindings[key][1]*gimbalstep
                 pitch = pitch + gimbalBindings[key][0]*gimbalstep
 
@@ -167,7 +170,7 @@ if __name__ == "__main__":
                 gimbal.enemy_dist = 2.0
                 gimbal_pub.publish(gimbal)
                 print "yaw angle: %s\t pitch angle: %s\t" % (yaw, pitch)
-            elif key in shootBindings.keys():
+            elif key in shootBindings.keys():#射击指令解析
                 sc = shootBindings[key][0]
                 csc = shootBindings[key][1]
                 fwr = shootBindings[key][2]
