@@ -1,9 +1,9 @@
 # teleop_controller
 Using keyboard to control RM AI Robot
-#Install
+# Install
 cd ~/catkin_ws/
 catkin_make
-#run
+# run
 python path to pyfile/teleop_control.py
 
 Reading from the keyboard  and Publishing to Twist!
