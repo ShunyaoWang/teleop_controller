@@ -6,7 +6,9 @@ cd ~/catkin_ws/
 catkin_make
 ~~~
 # Run
-~python path to pyfile/teleop_control.py~
+~~~
+python path to pyfile/teleop_control.py
+~~~
 
 # Reading from the keyboard  and Publishing to Twist!
 Moving around:  
