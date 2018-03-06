@@ -12,12 +12,14 @@ Moving around:
    u    i    o
    j    k    l
    m    ,    .
+-----------------------------
 # For Holonomic mode (strafing), hold down the shift key:
 ---------------------------
    U    I    O
    J    K    L
    M    <    >
 t : up (+z) b : down (-z)
+----------------------------
 For RM Robot:
 # gimbal control:+/-steps by 1 degree
         8
