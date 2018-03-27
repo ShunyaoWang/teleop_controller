@@ -1,6 +1,8 @@
 # teleop_controller
-Using keyboard to control RM AI Robot
+Using keyboard to control RM AI Robot.
+
 A developed version of controller of RM AI Robot, providing a class Controller to control robot not only by keyboard but also by user defined node. Besides, it has a simulator access, which is underdeveloping
+more in example.py
 # Install
 ~~~
 cd ~/catkin_ws/
@@ -9,6 +11,7 @@ catkin_make
 # Run
 ~~~
 python path to pyfile/teleop_control.py
+python path to pyfile/example.py
 ~~~
 
 # Reading from the keyboard  and Publishing to Twist!
