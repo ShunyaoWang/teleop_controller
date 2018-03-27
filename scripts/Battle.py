@@ -125,7 +125,7 @@ class BattleEnv():
 
     def isActionAvaliable(self, goal):
         #orin = Quaternion()
-        goal = PoseStamped()
+        #goal = PoseStamped()
         ok = False
         x_goal = int(goal.pose.position.x / 0.05)
         y_goal = int(goal.pose.position.y / 0.05)
