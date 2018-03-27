@@ -54,6 +54,7 @@ add_message_files(
 #   Message2.msg
     EnemyPos.msg
     ShootCmd.msg
+    ModeSW.msg
  )
 
 ## Generate services in the 'srv' folder
@@ -162,10 +163,10 @@ include_directories(
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-catkin_install_python(PROGRAMS
-   scripts/teleop_control.py
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/scripts
-)
+#catkin_install_python(PROGRAMS
+#   scripts/teleop_control.py
+#  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/scripts
+#)
 
 ## Mark executables and/or libraries for installation
 # install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_node
