@@ -52,7 +52,8 @@ nav_goal.pose.position.x = 1
 nav_goal.pose.position.y = 1
 
 if env.isActionAvaliable(nav_goal):#判断目标点是否可行
-    controller.nav_goal_pub(env.navgoal)#发送目标
+    controller.send_goal(env.navgoal)#发送目标
+    print 'sending goal'
 else:
     pass
 #切换模式
