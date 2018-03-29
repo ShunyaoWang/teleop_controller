@@ -8,6 +8,7 @@ from nav_msgs.msg import Odometry
 from teleop_controller.msg import ShootCmd, EnemyPos
 import time
 import math
+import tf
 
 
 
@@ -123,19 +124,20 @@ class BattleEnv():
             done = True
         return observationnew, reward, done'''
 
-    def isActionAvaliable(self, goal):
+    def isActionAvaliable(self, px, py, theta):
         #orin = Quaternion()
         #goal = PoseStamped()
         ok = False
-        x_goal = int(goal.pose.position.x / 0.05)
-        y_goal = int(goal.pose.position.y / 0.05)
+        x_goal = int(px / 0.05)
+        y_goal = int(py / 0.05)
+        quat = tf.transformations.quaternion_from_euler(0, 0, theta*3.1416/180)
         if self.map[101 - y_goal, x_goal] == 255:  # 是否在地图可行区域
             self.navgoal.pose.position.x = x_goal * 0.05  # 101X161地图栅格
             self.navgoal.pose.position.y = y_goal * 0.05
-            self.navgoal.pose.orientation.x = goal.pose.orientation.x
-            self.navgoal.pose.orientation.y = goal.pose.orientation.y
-            self.navgoal.pose.orientation.z = goal.pose.orientation.z
-            self.navgoal.pose.orientation.w = goal.pose.orientation.w
+            self.navgoal.pose.orientation.x = quat[0]
+            self.navgoal.pose.orientation.y = quat[1]
+            self.navgoal.pose.orientation.z = quat[2]
+            self.navgoal.pose.orientation.w = quat[3]
             ok = True
         else:
             pass

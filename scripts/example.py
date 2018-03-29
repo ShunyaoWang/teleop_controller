@@ -9,7 +9,6 @@ from teleop_controller.msg import EnemyPos, ShootCmd, ModeSW
 import time
 
 
-
 GIMBAL_RELAX = 0
 GIMBAL_INIT = 1
 GIMBAL_NO_ARTI_INPUT = 2
@@ -34,7 +33,7 @@ controller = Controller()
 env = BattleEnv()
 #定义控制命令
 vel = Twist()
-nav_goal = PoseStamped()
+nav_goal = env.navgoal
 shoot_cmd = ShootCmd()
 mode = ModeSW()
 #接受机器人状态消息
@@ -47,13 +46,12 @@ time.sleep(0.1)
 print 'self location is x=%s\ty=%s\t yaw=%s\n' % (env.MyPose['x'], env.MyPose['y'], env.MyPose['theta'])
 print 'enemy pose is yaw=%s\tpitch=%s\tdistance=%s\n' % (env.EnemyPose.enemy_yaw, env.EnemyPose.enemy_pitch, env.EnemyPose.enemy_dist)
 #发布目标点
-nav_goal.header.frame_id = 'map'
-nav_goal.pose.position.x = 1
-nav_goal.pose.position.y = 1
-
-if env.isActionAvaliable(nav_goal):#判断目标点是否可行
+goal_x = 4
+goal_y = 2.5
+goal_yaw = 0
+if env.isActionAvaliable(goal_x, goal_y, goal_yaw):#判断目标点是否可行
     controller.send_goal(env.navgoal)#发送目标
-    print 'sending goal'
+    print 'sending goal successful'
 else:
     pass
 #切换模式

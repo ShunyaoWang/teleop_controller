@@ -137,7 +137,7 @@ if __name__ == "__main__":
     sc =0
     csc=0
     fwr = 0
-    fws = 2000
+    fws = 1500
     #定义三种消息类
     twist = Twist()
     gimbal = EnemyPos()
