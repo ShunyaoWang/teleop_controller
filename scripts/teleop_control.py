@@ -178,8 +178,8 @@ if __name__ == "__main__":
                 yaw = yaw + teleop.gimbalBindings[key][1]*gimbalstep
                 pitch = pitch + teleop.gimbalBindings[key][0]*gimbalstep
 
-                gimbal.enemy_yaw = yaw*3.1416/180
-                gimbal.enemy_pitch = pitch*3.1416/180
+                gimbal.enemy_yaw = yaw#*3.1416/180
+                gimbal.enemy_pitch = pitch#*3.1416/180
                 gimbal.enemy_dist = 2.0
                 teleop.gimbal_pub.publish(gimbal)
                 print "yaw angle: %s\t pitch angle: %s\t" % (yaw, pitch)
